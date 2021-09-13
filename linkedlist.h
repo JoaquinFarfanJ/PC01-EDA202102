@@ -30,7 +30,7 @@ class LinkedList
     bool    empty() const       { return size() == 0;  }
 
     ostream & print(ostream &os);
-    T &operator[](size_t pos); //
+    T &operator[](size_t pos);
 };
 
 template <typename T>
@@ -97,7 +97,7 @@ class iterator
     // using Node = typename LinkedList<T>::Node;
     typename LinkedList<T>::Node *m_pNode;
  public:
-    iterator(LinkedList<T>::Node *pNode) : m_pNode(pNode) {}
+    iterator(typename LinkedList<T>::Node *pNode) : m_pNode(pNode) {}
     bool operator==(iterator &iter)       { return m_pNode == iter.m_pNode; }
     bool operator!=(iterator &iter)       { return m_pNode != iter.m_pNode; }
     T &operator*()                         { return *m_pNode->getData();      }
@@ -105,9 +105,10 @@ class iterator
 };
 
 template <typename T>
-void iterator<T>::operator++();
+void iterator<T>::operator++(size_t pos)
 {
     m_pNode = m_pNode->getpNext();
-}
+
+};
 
 #endif
